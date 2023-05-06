@@ -78,3 +78,13 @@ gem "factory_bot_rails", "~> 6.2"
 gem "database_cleaner-active_record", "~> 2.1"
 
 gem "shoulda-matchers", "~> 5.3"
+
+gem "pagy", "~> 6.0"
+
+gem "counter_culture", "~> 3.3"
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
+
+gem "rails-controller-testing", "~> 1.0"
+
+gem "tailwindcss-rails", "~> 2.0"

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :urls, only: %i[index create show]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get '/:shortened', to: 'urls#redirect', as: :redirect
+
+  root to: 'urls#index'
 end

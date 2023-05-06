@@ -1,0 +1,20 @@
+<div class="flex justify-between py-4 px-2 hover:bg-white transition duration-75 ease-in-out rounded">
+  <div class="flex-shrink-0 mr-2">
+    <p class="text-base text-gray-900 leading-normal">
+      <%= url.original %>
+    </p>
+    <p class="text-sm text-gray-500">
+      Clicks: <%= url.clicks_count %>,
+      Unique Clicks: <%= url.clicks_count_unique %>
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 gap-1">
+    <span>
+      <%= link_to 'Show', url_path(url) %>
+    </span>
+    <span>
+      <%= link_to 'Redirect', redirect_path(url.shortened), target: :_blank %>
+    </span>
+  </div>
+</div>

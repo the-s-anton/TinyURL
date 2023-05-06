@@ -1,0 +1,11 @@
+<%= form_for url, class: 'w-full block' do |f| %>
+  <div class="grid grid-cols-1 gap-6">
+    <div class="col">
+      <%= f.text_field :original, placeholder: 'Fantastic URL here...', class: 'block w-full rounded-full border-0 py-4 px-8 text-gray-900 text-xl font-semibold ring-4 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-4 focus:ring-inset focus:ring-blue-600', autofocus: true %>
+    </div>
+
+    <div class="col flex justify-center">
+      <%= f.button 'Generate', type: :submit, class: 'block rounded-lg border-0 bg-blue-500 py-4 px-8 text-gray-900 text-xl text-white font-medium placeholder:text-gray-400 focus:ring-4 focus:ring-inset focus:ring-blue-600 hover:bg-blue-600 transition ease-in-out duration-75', data: { disable_with: 'Processing...' } %>
+    </div>
+  </div>
+<% end %>

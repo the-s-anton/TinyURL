@@ -1,16 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html class="bg-gray-100">
   <head>
     <title>TinyURL</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'components/notifications', locals: { flash: flash } if flash.any? %>
+
+    <main class="container mx-auto px-5 max-w-2xl py-20">
+      <div class="block">
+        <div class="mb-12 text-center">
+          <%= link_to root_path, class: 'inline-block' do %>
+            <h1 class="text-4xl font-bold text-gray-900">
+              TineURL.com
+            </h1>
+            <p class="text-gray-500">
+              We hope it works this time! 🤞
+            </p>
+          <% end %>
+        </div>
+
+        <%= render 'form', url: Url.new %>
+      </div>
+
+      <div class="block mt-20">
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>
