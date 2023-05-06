@@ -18,6 +18,7 @@ class UrlsController < ApplicationController
   end
 
   def redirect
+    redirect_url.clicks.create(ip_address: request.remote_ip)
     redirect_to redirect_url.original, allow_other_host: true
   end
 

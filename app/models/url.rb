@@ -5,6 +5,10 @@ class Url < ApplicationRecord
   # Regular URI.regexp can't handle all valid URLs, so we use a custom one
   REGEXP_URL_FORM = %r{^(http|https)://[a-z0-9]+([-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?$}ix
 
+  # Associations
+  ######################################################################
+  has_many :clicks, dependent: :destroy, class_name: Click.name
+
   # Callbacks
   ######################################################################
   before_validation :generate_shortened!, on: :create, unless: :shortened?
@@ -16,6 +20,8 @@ class Url < ApplicationRecord
   validates :shortened, presence: true, uniqueness: true
   validates :clicks_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :clicks_count_unique, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  private
 
   # Private methods
   ######################################################################
