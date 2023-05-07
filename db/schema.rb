@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_06_223100) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_06_224739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_223100) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["url_id"], name: "index_clicks_on_url_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.jsonb "params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "operations", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.jsonb "params"
+    t.jsonb "response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "urls", force: :cascade do |t|

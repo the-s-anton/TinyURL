@@ -88,3 +88,11 @@ gem "byebug", "~> 11.1", :groups => [:development, :test]
 gem "rails-controller-testing", "~> 1.0"
 
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "dry-types", "~> 1.7"
+
+gem "dry-struct", "~> 1.6"
+
+gem "sidekiq", "~> 7.1"
+
+gem "after_commit_everywhere", "~> 1.3"
