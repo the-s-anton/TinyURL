@@ -1,24 +1,48 @@
-# README
+This is a simple Url shortener application.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+Ruby - `v3.2.2`
 
-Things you may want to cover:
+Ruby on Rails - `v7`
 
-* Ruby version
+Ensure that all necessary ruby gems are installed.
 
-* System dependencies
+```ruby
+bundle install
+```
 
-* Configuration
+Run database migrations
 
-* Database creation
+```ruby
+rails db:create db:migrate db:seed
+```
 
-* Database initialization
+## Running the app
+I decided to add some Tailwindcss. Therefore we will need to run the server via `Procfile`
 
-* How to run the test suite
+```ruby
+bin/dev
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Testing
+I use `Rspec` for testing; run `rspec` in your terminal to run tests.
 
-* ...
+```ruby
+rspec
+```
+
+-----
+
+This app has two different setups:
+
+1. First setup uses the whole stats collection. To use the basic approach, go to the `urls_controller.rb#redirect` and update the code to the following:
+
+```ruby
+redirect_url.clicks.create(ip_address: request.remote_ip)
+# publish_event(Url::Clicked, id: redirect_url.id, ip_address: request.remote_ip)
+```
+
+2. Second setup uses a pub-sub implementation and assumes that our TineURL app is top-rated. That's why the logic was moved to the `background`. The other reason for using PubSub here is to make all models very isolated from each other. It will help us to keep our code clean and avoid coupling.
+
+PubSus setup can be found in the `app/lib` folder; please note I didn't write a spec for the PubSub.
