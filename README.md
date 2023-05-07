@@ -46,3 +46,15 @@ redirect_url.clicks.create(ip_address: request.remote_ip)
 2. Second setup uses a pub-sub implementation and assumes that our TineURL app is top-rated. That's why the logic was moved to the `background`. The other reason for using PubSub here is to make all models very isolated from each other. It will help us to keep our code clean and avoid coupling.
 
 PubSus setup can be found in the `app/lib` folder; please note I didn't write a spec for the PubSub.
+
+-----
+
+## What's next?
+
+Add a state machine to make our Event, Operation, and EvenHandler consistent. https://github.com/gocardless/statesman - perfect database-driven state machine that will work just right for our setup.
+
+`Operation` files or `EventHandler` will be in charge of moving between the states where our states are `statuses` or, in other words, `enum` values.
+
+```ruby
+self.class.state_machine.transition_to!(:new_state_here)
+```
